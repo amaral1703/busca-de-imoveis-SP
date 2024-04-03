@@ -1,0 +1,26 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="{% static 'main.css' %}">
+	</head>
+    <body>
+		<div class="conteudo">
+		<h1> pesquisa de imóveis em SP</h1>
+		<br>
+        <form method="post" action="{% url 'mostrar_pesquisa' %}">
+			{% csrf_token %}
+			<input type="search" placeholder="digite sua pesquisa" name="pesquisa_atual"> <button type="submit">Pesquisar</button>
+		</form>
+
+		{% block content %} {% endblock %}
+		
+		<p> Feito por Gabriel do Amaral Abreu - 2024 IFSP</p>
+		</div>
+    </body>
+</html>
+

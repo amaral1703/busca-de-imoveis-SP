@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>  
+    <body>
+            {% if pesquisa_atual %}
+                <h1>a sua pesquisa foi {{ pesquisa_atual }} </h1>
+                {% if imoveis %}
+                    <p> indices de pesquisa:</p>
+                    <p> id --- numero do contribuinte --- nome do logradouro --- numero do imovel --- complemento --- bairro --- cep --- area tereno --- m² terreno </p>
+                {% else %}
+                    <p> não ha resultados para {{ pesquisa_atual }}</p>
+                {% endif %}
+                {% for imovel in imoveis %}
+                    <p>{{ imovel.id }} - {{ imovel.num_contrib }} - {{ imovel.nome_logradoro_imovel }} - {{ imovel.num_imovel|floatformat:0 }} -
+                        {{ imovel.complemento_imovel }} - {{ imovel.bairro_imovel }} -
+                        {{ imovel.cep_imovel }} - {{ imovel.area_tereno|floatformat:0  }} - {{ imovel.metro_quad_terreno|floatformat:0 }};</p> <br>
+                {% endfor %}
+
+
+            {% else %}
+                <h1>nenhuma pesquisa correspondente</h1>
+            {% endif %}
+           
+        <a href="{% url 'index' %}"><button type="submit">voltar para a pagina inicial</button></a>
+        <!-- </div> -->
+    </body>
+</html>
+{% endblock %}
